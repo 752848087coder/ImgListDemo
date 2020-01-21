@@ -4,11 +4,13 @@
 
 在线demo:  http://gavincat.cn/ImgListDemo
 
-博客链接:  https://blog.csdn.net/qq_36259513/article/details/103108221
+博客链接:  https://blog.csdn.net/qq_36259513/article/details/104060942
 
 ### 实现原理：
 
-假设每行可放置n张图片，则取n+1的图片，把多余的部分按比例分配到每张图片上进行剪切。
+假设一行最多可以放置n张图片，则取n+1张图片进行裁剪，将多余部分按比例分配到每张图片进行裁剪，宽度大的图片裁多一
+
+点，宽度小的图片裁少一点。
 
 ## Project setup
 ```
