@@ -30,7 +30,8 @@ export default {
             imgs: [],
             showImgs: [],
             curSrc: '',
-            data: []
+            data: [],
+            scroll: undefined
         }
     },
     methods: {
@@ -91,6 +92,8 @@ export default {
             if (row.length > 0) {
                 this.showImgs.push(row);
             }
+            // 每次渲染完数据调用一下scroll，如果距离底部距离过大会继续自动拉取更多图片
+            this.scroll();
         },
         fetchData() {
             this.imgs.push(...this.data.map(i => {
@@ -129,7 +132,7 @@ export default {
                     let clientHeight = document.documentElement.clientHeight;
                     let scrollTop = document.documentElement.scrollTop;
                     let scrollHeight = document.documentElement.scrollHeight;
-                    if (scrollHeight - (scrollTop + clientHeight) < 100) {
+                    if (scrollHeight - (scrollTop + clientHeight) < 200) {
                         this.fetchData();
                         this.handleImgs();
                     }
@@ -138,7 +141,7 @@ export default {
             }
         }
         window.onresize = resize();
-        window.onscroll = scroll();
+        this.scroll = window.onscroll = scroll();
         this.initImgs();
     }
 };
